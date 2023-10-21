@@ -19,11 +19,13 @@ class ApplicationController extends Controller
      */
     public function index(User $user)
     {
-        if(auth()->user()->admin) {
-            $lamarans = Application::latest()->get();;
+        if (auth()->user()->admin) {
+            $lamarans = Application::latest()->get();
             return view('lamaran.index', ['lamarans' => $lamarans]);
         }
-        return view('lamaran.index', ['lamarans' => $user->lamarans()->latest()->get()]);        
+        $userId = auth()->id();
+        $lamarans = Application::where('user_id', $userId)->latest()->get();
+        return view('lamaran.index', ['lamarans' => $lamarans]);
     }
 
     /**
@@ -35,7 +37,9 @@ class ApplicationController extends Controller
         $tanggalSekarang = Carbon::now()->format('d/m/Y');
         $user = auth()->user();
 
-        return view('lamaran.create', ['tanggalSekarang' => $tanggalSekarang, 'institutions' => $institutions, 'user' => $user]);
+        $tanggal3BulanLagi = Carbon::now()->addMonths(3)->format('d/m/Y');
+
+        return view('lamaran.create', ['tanggalSekarang' => $tanggalSekarang, 'tanggal3BulanLagi' => $tanggal3BulanLagi, 'institutions' => $institutions, 'user' => $user]);
     }
 
     /**
@@ -45,9 +49,9 @@ class ApplicationController extends Controller
     {
         $inputanForm = $request->validate([
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'alamat' => 'required',
-            'telepon' => 'required',
+            'telepon' => 'required|min:10',
             'email' => 'required',
             'univ' => 'required',
             'institution_id' => 'required',
@@ -65,7 +69,7 @@ class ApplicationController extends Controller
         $filenamektp = $user->id . '-' . uniqid() . '.pdf';
         $ktp = $request->file('berkasktp');
         Storage::putFileAs('public/ktp', $ktp, $filenamektp);
-        
+
         // ktm
         $filenamektm = $user->id . '-' . uniqid() . '.pdf';
         $ktm = $request->file('berkasktm');

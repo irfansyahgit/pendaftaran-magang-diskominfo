@@ -146,6 +146,23 @@ return [
     */
 
     'attributes' => [
+        'nama' => 'Nama',
+        'nik' => 'NIK',
+        'alamat' => 'Alamat',
+        'telepon' => 'Telepon',
+        'email' => 'Email',
+        'univ' => 'Universitas',
+        'mulai' => 'Tanggal Mulai',
+        'selesai' => 'Tanggal Selesai',
+        'keterangan' => 'Keterangan',
+        'berkasktp' => 'KTP',
         'berkasktm' => 'KTM',
+        'berkaspermohonan' => 'Permohonan',
+        'berkasproposal' => 'Proposal',
+        'institution_id' => 'Tempat Magang',
+        
+        'password' => 'Password',
+        'name' => 'Nama',
+        
     ],
 ];

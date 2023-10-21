@@ -35,7 +35,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/riwayat/{{auth()->user()->name}}" :active="request()->routeIs('riwayat')">
+                    <x-nav-link href="/riwayat" :active="request()->routeIs('riwayat')">
                         {{ __('Riwayat') }}
                     </x-nav-link>
                 </div>
