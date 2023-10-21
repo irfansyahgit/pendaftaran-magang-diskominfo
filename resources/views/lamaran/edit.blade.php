@@ -34,7 +34,7 @@
                     <div class="row mb-3">
                         <label for="keteranganadmin" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" id="keteranganadmin" name="keteranganadmin" style="height: 150px;">{{$lamaran->keteranganadmin}}</textarea>
+                        <textarea class="form-control" id="keterangan_admin" name="keterangan_admin" style="height: 150px;">{{$lamaran->keterangan_admin}}</textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary float-end mb-3" style="width: 200px;">Simpan Perubahan</button>

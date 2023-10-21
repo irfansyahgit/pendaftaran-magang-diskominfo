@@ -71,8 +71,8 @@
                 </svg>
                 <div class="ml-4 flex min-w-0 flex-1 gap-2">
                   <div>KTP:</div>
-                  <a href="{{ route('download.ktp', ['filename' => $lamaran->berkasktp]) }}">
-                    <span class="truncate font-medium">{{$lamaran->berkasktp}}</span>
+                  <a href="{{ route('download.ktp', ['filename' => $lamaran->berkas_ktp]) }}">
+                    <span class="truncate font-medium">{{$lamaran->berkas_ktp}}</span>
                   </a>
                   <!-- <span class="flex-shrink-0 text-gray-400">2.4mb</span> -->
                 </div>
@@ -88,8 +88,8 @@
                 </svg>
                 <div class="ml-4 flex min-w-0 flex-1 gap-2">
                   <div>KTM:</div>
-                  <a href="{{ route('download.ktm', ['filename' => $lamaran->berkasktm]) }}">
-                    <span class="truncate font-medium">{{$lamaran->berkasktm}}</span>
+                  <a href="{{ route('download.ktm', ['filename' => $lamaran->berkas_ktm]) }}">
+                    <span class="truncate font-medium">{{$lamaran->berkas_ktm}}</span>
                   </a>
                   <!-- <span class="flex-shrink-0 text-gray-400">4.5mb</span> -->
                 </div>
@@ -105,8 +105,8 @@
                 </svg>
                 <div class="ml-4 flex min-w-0 flex-1 gap-2">
                   <div>Permohonan:</div>
-                  <a href="{{ route('download.permohonan', ['filename' => $lamaran->berkaspermohonan]) }}">
-                    <span class="truncate font-medium">{{$lamaran->berkaspermohonan}}</span>
+                  <a href="{{ route('download.permohonan', ['filename' => $lamaran->berkas_permohonan]) }}">
+                    <span class="truncate font-medium">{{$lamaran->berkas_permohonan}}</span>
                   </a>
                   <!-- <span class="flex-shrink-0 text-gray-400">4.5mb</span> -->
                 </div>
@@ -122,8 +122,8 @@
                 </svg>
                 <div class="ml-4 flex min-w-0 flex-1 gap-2">
                   <div>Proposal:</div>
-                  <a href="{{ route('download.proposal', ['filename' => $lamaran->berkasproposal]) }}">
-                    <span class="truncate font-medium">{{$lamaran->berkasproposal}}</span>
+                  <a href="{{ route('download.proposal', ['filename' => $lamaran->berkas_proposal]) }}">
+                    <span class="truncate font-medium">{{$lamaran->berkas_proposal}}</span>
                   </a>
                   <!-- <button type="button" class="btn btn-primary m-2">Primary</button> -->
                   <!-- <span class="flex-shrink-0 text-gray-400">4.5mb</span> -->
@@ -142,7 +142,7 @@
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Keterangan dari Admin</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{$lamaran->keteranganadmin}}</dd>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{$lamaran->keterangan_admin}}</dd>
       </div>
       @if(auth()->user()->admin)
       <div>

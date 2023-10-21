@@ -34,7 +34,7 @@ Route::get('/lamaran/{lamaran}', [ApplicationController::class, 'show'])->middle
 
 
 Route::get('/lamaran/{lamaran}/edit', [ApplicationController::class, 'edit'])->middleware(['auth', 'verified']);
-Route::put('/lamaran{lamaran}', [ApplicationController::class, 'update'])->middleware(['auth', 'verified']);
+Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->middleware(['auth', 'verified']);
 
 
 Route::get('/riwayat/{user:name}', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('riwayat');

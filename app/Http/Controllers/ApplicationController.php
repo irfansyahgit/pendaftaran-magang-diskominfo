@@ -92,23 +92,22 @@ class ApplicationController extends Controller
             $keteranganAdmin = '-';
         }
 
-
         $application = new Application();
         $application->nama = $request->input('nama');
         $application->nik = $request->input('nik');
         $application->alamat = $request->input('alamat');
         $application->telepon = $request->input('telepon');
         $application->email = $request->input('email');
-        $application->univ = $request->input('univ');
+        $application->universitas = $request->input('univ');
         $application->institution_id = $request->input('institution_id');
         $application->mulai = $request->input('mulai');
         $application->selesai = $request->input('selesai');
         $application->keterangan = $keterangan;
-        $application->keteranganadmin = $keteranganAdmin;
-        $application->berkasktp = $filenamektp;
-        $application->berkasktm = $filenamektm;
-        $application->berkaspermohonan = $filenamePermohonan;
-        $application->berkasproposal = $filenameProposal;
+        $application->keterangan_admin = $keteranganAdmin;
+        $application->berkas_ktp = $filenamektp;
+        $application->berkas_ktm = $filenamektm;
+        $application->berkas_permohonan = $filenamePermohonan;
+        $application->berkas_proposal = $filenameProposal;
         $application->user_id = auth()->id();
         $application->stat_id = 1;
         $application->save();
@@ -143,7 +142,7 @@ class ApplicationController extends Controller
         ]);
 
         $lamaran->stat_id = $request->input('stat');
-        $lamaran->keteranganadmin = $request->input('keteranganadmin');
+        $lamaran->keterangan_admin = $request->input('keterangan_admin');
         $lamaran->save();
 
         return redirect("/lamaran/{$lamaran->id}")->with('berhasil', 'Berhasil edit lamaran!');
