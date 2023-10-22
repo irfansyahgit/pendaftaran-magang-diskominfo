@@ -91,6 +91,13 @@
                 document.getElementById('selesai').value = selesaiFormatted;
             }
         });
+
+
+        flatpickr("#selesai", {
+            enableTime: false,
+            dateFormat: "d-m-Y", // Format tanggal yang diinginkan
+            locale: 'id',
+        });
     </script>
 
 

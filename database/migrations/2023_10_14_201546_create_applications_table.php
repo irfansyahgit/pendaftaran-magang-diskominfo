@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->integer('nik');
+            $table->bigInteger('nik');
             $table->string('alamat');
             $table->integer('telepon');
             $table->string('email');
