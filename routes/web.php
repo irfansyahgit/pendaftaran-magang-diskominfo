@@ -38,7 +38,7 @@ Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->midd
 
 
 Route::get('/riwayat', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('riwayat');
-Route::get('/data', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('data');
+Route::get('/data', [ApplicationController::class, 'index'])->middleware(['auth', 'verified', 'can:hanyaAdmin'])->name('data');
 
 
 Route::get('/dashboard', function () {

@@ -13,7 +13,10 @@ class ApplicationPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->id === $application->user_id;
+        // if($user->admin){
+        //     return true;
+        // }
+        // return $user->id === $application->user_id;
     }
 
     /**
@@ -21,6 +24,9 @@ class ApplicationPolicy
      */
     public function view(User $user, Application $application): bool
     {
+        if($user->admin){
+            return true;
+        }
         return $user->id === $application->user_id;
     }
 
