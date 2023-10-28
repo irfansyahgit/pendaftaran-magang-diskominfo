@@ -159,7 +159,7 @@ return [
         'berkasktm' => 'KTM',
         'berkaspermohonan' => 'Permohonan',
         'berkasproposal' => 'Proposal',
-        'institution_id' => 'Tempat Magang',
+        'institution_id' => 'Instansi Tujuan',
         
         'password' => 'Password',
         'name' => 'Nama',

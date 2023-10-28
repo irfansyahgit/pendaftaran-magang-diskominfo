@@ -155,8 +155,9 @@ class ApplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Application $lamaran)
     {
-        //
+        $lamaran->delete();
+        return redirect('/data')->with('berhasil', 'Berhasil hapus data');
     }
 }

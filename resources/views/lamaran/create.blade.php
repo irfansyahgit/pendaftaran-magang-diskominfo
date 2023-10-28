@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="lokasi" class="col-sm-2 col-form-label">Tempat Magang</label>
+                            <label for="lokasi" class="col-sm-2 col-form-label">Instansi Tujuan</label>
                             <div class="col-sm-10">
                                 <select class="form-select mb-3" placeholder="Default select example" name="institution_id" id="test">
                                     <option value="" selected>-- Pilih Instansi --</option>

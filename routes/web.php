@@ -40,6 +40,7 @@ Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->midd
 Route::get('/riwayat', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('riwayat');
 Route::get('/data', [ApplicationController::class, 'index'])->middleware(['auth', 'verified', 'can:hanyaAdmin'])->name('data');
 
+Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

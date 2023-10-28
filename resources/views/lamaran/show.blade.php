@@ -1,7 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Riwayat') }}
+        @if(auth()->user()->admin)
+        {{ __('Data') }}
+
+        @else
+        {{ __('Riwayat') }}
+        @endif
            
         </h2>
     </x-slot>
@@ -11,14 +16,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="px-4 sm:px-0">
-    <!-- <h3 class="text-base font-semibold leading-7 text-gray-900">Applicant Information</h3>
-    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p> -->
+
     @if(session()->has('berhasil'))
             <div class="alert alert-success small-alert m-0 p-2 text-center" role="alert">{{session('berhasil')}}
             </div>
             @endif
   </div>
   <div class="mt-6 border-t border-gray-100">
+    <p><small><strong><a href="/data">&laquo; Kembali</a></strong></small></p>
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Nama</dt>
@@ -42,7 +47,7 @@
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Universitas</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{$lamaran->univ}}</dd>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{$lamaran->universitas}}</dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Instansi</dt>
