@@ -151,7 +151,7 @@
       </div>
       @if(auth()->user()->admin)
       <div>
-      <a href="/lamaran/{{$lamaran->id}}/edit" class="btn btn-primary m-2 float-end mb-3" style="width: 200px;">Edit</a>
+      <a href="/lamaran/{{$lamaran->id}}/edit" class="btn btn-primary m-2 float-end mb-3" style="width: 200px;">Edit Status</a>
       </div>
       @endif
     </dl>

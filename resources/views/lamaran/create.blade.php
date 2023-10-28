@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <form action="/lamaran" method="post" enctype="multipart/form-data">
                         @csrf
-                        <h6 class="mb-4">Identitas</h6>
+                        <h6 class="mb-4">Identitas : </h6>
                         <div class="row mb-3">
                             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-10">
@@ -124,7 +124,7 @@
                                 <textarea class="form-control" id="keterangan" name="keterangan" style="height: 150px;" placeholder="Silakan masukkan catatan di sini...">{{old('keterangan')}}</textarea>
                             </div>
                         </div>
-                        <h6 class="mb-4">Berkas</h6>
+                        <h6 class="mb-4">Berkas : </h6>
                         <div class="row mb-3">
                             <label for="berkasktp" class="col-sm-2 col-form-label">KTP</label>
                             <div class="col-sm-10">

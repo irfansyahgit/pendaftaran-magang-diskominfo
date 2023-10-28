@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->bigInteger('nik');
             $table->string('alamat');
-            $table->integer('telepon');
+            $table->bigInteger('telepon');
             $table->string('email');
             $table->string('universitas');
             $table->string('mulai');

@@ -43,12 +43,8 @@
         @method('DELETE')
         <button type="button" class="btn btn-danger" onclick="confirmDelete({{$lamaran->id}})"><i class="fas fa-trash"></i></button>
     </form>
-    <form action="/data/{{$lamaran->id}}" method="POST" class="d-inline-block mr-2">
-        @csrf
-        @method('PUT')
-        <button type="button" class="btn btn-primary" ><i class="fas fa-edit"></i></button>
-    </form>
-    <a href="/lamaran/{{$lamaran->id}}" class="btn btn-success" onclick="viewData({{$lamaran->id}})"><i class="fas fa-eye"></i></a>
+    <a href="/data/{{$lamaran->id}}/edit" class="btn btn-primary d-inline-block mr-2"><i class="fas fa-edit"></i></a>
+    <a href="/lamaran/{{$lamaran->id}}" class="btn btn-success d-inline-block mr-2" ><i class="fas fa-eye"></i></a>
 
 </div>
 

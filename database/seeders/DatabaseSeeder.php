@@ -102,5 +102,20 @@ class DatabaseSeeder extends Seeder
             ['nama' => 'Ditolak'],
             ['nama' => 'Diterima'],
         ]);
+
+        // DB::table('users')->insert([
+        //     ['name' => 'admin'],
+        //     ['email' => 'admin@ex.com'],
+        //     ['password' => 'password'],
+        //     ['admin' => 1],
+        // ]);
+
+        DB::table('users')->insert([
+            ['name' => 'admin', 'email' => 'admin@ex.com', 'password' => bcrypt('password'), 'admin' => 1],
+            ['name' => 'user', 'email' => 'user@ex.com', 'password' => bcrypt('password'), 'admin' => 0],
+        ]);
+        
+
+
     }
 }

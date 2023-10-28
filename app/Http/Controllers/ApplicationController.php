@@ -51,7 +51,7 @@ class ApplicationController extends Controller
             'nama' => 'required',
             'nik' => 'required|min:16',
             'alamat' => 'required',
-            'telepon' => 'required|min:10',
+            'telepon' => 'required|min:12',
             'email' => 'required',
             'univ' => 'required',
             'institution_id' => 'required',
@@ -136,6 +136,12 @@ class ApplicationController extends Controller
         return view('lamaran.edit', ['lamaran' => $lamaran, 'stats' => $stats]);
     }
 
+    public function editAll(Application $lamaran)
+    {
+        $institutions = Institution::all();
+        return view('lamaran.editAll', ['lamaran' => $lamaran, 'institutions' => $institutions]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -147,6 +153,36 @@ class ApplicationController extends Controller
 
         $lamaran->stat_id = $request->input('stat');
         $lamaran->keterangan_admin = $request->input('keterangan_admin');
+        $lamaran->save();
+
+        return redirect("/lamaran/{$lamaran->id}")->with('berhasil', 'Berhasil edit lamaran!');
+    }
+
+    public function updateAll(Request $request, Application $lamaran)
+    {
+
+        $inputanForm = $request->validate([
+            'nama' => 'required',
+            'nik' => 'required|min:16',
+            'alamat' => 'required',
+            'telepon' => 'required|min:12',
+            'email' => 'required',
+            'univ' => 'required',
+            'institution_id' => 'required',
+            'mulai' => 'required',
+            'selesai' => 'required',
+        ]);
+
+        $lamaran->nama = $request->input('nama');
+        $lamaran->nik = $request->input('nik');
+        $lamaran->alamat = $request->input('alamat');
+        $lamaran->telepon = $request->input('telepon');
+        $lamaran->email = $request->input('email');
+        $lamaran->universitas = $request->input('univ');
+        $lamaran->institution_id = $request->input('institution_id');
+        $lamaran->mulai = $request->input('mulai');
+        $lamaran->selesai = $request->input('selesai');
+        $lamaran->keterangan = $request->input('keterangan');
         $lamaran->save();
 
         return redirect("/lamaran/{$lamaran->id}")->with('berhasil', 'Berhasil edit lamaran!');

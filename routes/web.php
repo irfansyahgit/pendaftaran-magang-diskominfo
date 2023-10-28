@@ -32,7 +32,7 @@ Route::get('/lamaran', [ApplicationController::class, 'create'])->middleware(['a
 Route::post('/lamaran', [ApplicationController::class, 'store'])->middleware(['auth', 'verified']);
 Route::get('/lamaran/{lamaran}', [ApplicationController::class, 'show'])->middleware(['auth', 'verified', 'can:view,lamaran']);
 
-
+//note: link
 Route::get('/lamaran/{lamaran}/edit', [ApplicationController::class, 'edit'])->middleware(['auth', 'verified']);
 Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->middleware(['auth', 'verified']);
 
@@ -40,7 +40,11 @@ Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->midd
 Route::get('/riwayat', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('riwayat');
 Route::get('/data', [ApplicationController::class, 'index'])->middleware(['auth', 'verified', 'can:hanyaAdmin'])->name('data');
 
+// note: middleware
 Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy']);
+
+Route::get('/data/{lamaran}/edit', [ApplicationController::class, 'editAll']);
+Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
