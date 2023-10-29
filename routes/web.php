@@ -32,22 +32,22 @@ Route::get('/lamaran', [ApplicationController::class, 'create'])->middleware(['a
 Route::post('/lamaran', [ApplicationController::class, 'store'])->middleware(['auth', 'verified']);
 Route::get('/lamaran/{lamaran}', [ApplicationController::class, 'show'])->middleware(['auth', 'verified', 'can:view,lamaran']);
 
-//note: link
-Route::get('/lamaran/{lamaran}/edit', [ApplicationController::class, 'edit'])->middleware(['auth', 'verified']);
+
+Route::get('/lamaran/{lamaran}/edit', [ApplicationController::class, 'edit'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);
 Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->middleware(['auth', 'verified']);
 
 
 Route::get('/riwayat', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('riwayat');
 Route::get('/data', [ApplicationController::class, 'index'])->middleware(['auth', 'verified', 'can:hanyaAdmin'])->name('data');
 
-// note: middleware
-Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy']);
 
-Route::get('/data/{lamaran}/edit', [ApplicationController::class, 'editAll']);
-Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll']);
+Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy'])->middleware(['auth', 'verified', 'can:delete,lamaran']);
+
+Route::get('/data/{lamaran}/edit', [ApplicationController::class, 'editAll'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);
+Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll'])->middleware(['auth', 'verified']);
 
 Route::post('/filter', [ApplicationController::class, 'filter']);
-Route::get('/filter', [ApplicationController::class, 'filterIndex']);
+Route::get('/filter', [ApplicationController::class, 'filterIndex'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);
 
 
 Route::get('/dashboard', function () {

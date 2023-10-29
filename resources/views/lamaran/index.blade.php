@@ -26,7 +26,7 @@
           @csrf
               <label for="mulai_filter">Tanggal Mulai:</label>
               <input type="text" name="mulai_filter" id="mulai_filter">
-              <label for="selesai_filter" class="ml-3">Tanggal Selesai:</label>
+              <label for="selesai_filter" class="ml-3 mt-5">Tanggal Selesai:</label>
               <input type="text"  name="selesai_filter" id="selesai_filter">
               <div>
                 <label for="stat_filter" class="mt-3">Status:</label>
