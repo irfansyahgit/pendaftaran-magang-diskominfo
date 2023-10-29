@@ -34,7 +34,7 @@ Route::get('/lamaran/{lamaran}', [ApplicationController::class, 'show'])->middle
 
 
 Route::get('/lamaran/{lamaran}/edit', [ApplicationController::class, 'edit'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);
-Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->middleware(['auth', 'verified']);
+Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->middleware(['auth', 'verified', 'can:update,lamaran']);
 
 
 Route::get('/riwayat', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('riwayat');
@@ -44,7 +44,7 @@ Route::get('/data', [ApplicationController::class, 'index'])->middleware(['auth'
 Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy'])->middleware(['auth', 'verified', 'can:delete,lamaran']);
 
 Route::get('/data/{lamaran}/edit', [ApplicationController::class, 'editAll'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);
-Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll'])->middleware(['auth', 'verified']);
+Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll'])->middleware(['auth', 'verified', 'can:update,lamaran']);
 
 Route::post('/filter', [ApplicationController::class, 'filter']);
 Route::get('/filter', [ApplicationController::class, 'filterIndex'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);

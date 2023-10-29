@@ -107,34 +107,34 @@ class ApplicationController extends Controller
             $keteranganAdmin = '-';
         }
 
-        $application = new Application();
-        $application->nama = $request->input('nama');
-        $application->nik = $request->input('nik');
-        $application->alamat = $request->input('alamat');
-        $application->telepon = $request->input('telepon');
-        $application->email = $request->input('email');
-        $application->universitas = $request->input('univ');
-        $application->institution_id = $request->input('institution_id');
+        $lamaran = new Application();
+        $lamaran->nama = $request->input('nama');
+        $lamaran->nik = $request->input('nik');
+        $lamaran->alamat = $request->input('alamat');
+        $lamaran->telepon = $request->input('telepon');
+        $lamaran->email = $request->input('email');
+        $lamaran->universitas = $request->input('univ');
+        $lamaran->institution_id = $request->input('institution_id');
 
 
         $mulaiString = $request->input('mulai');
-        $application->mulai = Carbon::createFromFormat('d/m/Y', $mulaiString)->format('Y-m-d');
+        $lamaran->mulai = Carbon::createFromFormat('d/m/Y', $mulaiString)->format('Y-m-d');
 
         $selesaiString = $request->input('selesai');
-        $application->selesai = Carbon::createFromFormat('d/m/Y', $selesaiString)->format('Y-m-d');
+        $lamaran->selesai = Carbon::createFromFormat('d/m/Y', $selesaiString)->format('Y-m-d');
 
 
-        $application->keterangan = $keterangan;
-        $application->keterangan_admin = $keteranganAdmin;
-        $application->berkas_ktp = $filenamektp;
-        $application->berkas_ktm = $filenamektm;
-        $application->berkas_permohonan = $filenamePermohonan;
-        $application->berkas_proposal = $filenameProposal;
-        $application->user_id = auth()->id();
-        $application->stat_id = 1;
-        $application->save();
+        $lamaran->keterangan = $keterangan;
+        $lamaran->keterangan_admin = $keteranganAdmin;
+        $lamaran->berkas_ktp = $filenamektp;
+        $lamaran->berkas_ktm = $filenamektm;
+        $lamaran->berkas_permohonan = $filenamePermohonan;
+        $lamaran->berkas_proposal = $filenameProposal;
+        $lamaran->user_id = auth()->id();
+        $lamaran->stat_id = 1;
+        $lamaran->save();
 
-        return redirect("/lamaran/{$application->id}")->with('berhasil', 'Berhasil kirim lamaran!');
+        return redirect("/lamaran/{$lamaran->id}")->with('berhasil', 'Berhasil kirim lamaran!');
     }
 
     /**
@@ -202,8 +202,13 @@ class ApplicationController extends Controller
         $lamaran->email = $request->input('email');
         $lamaran->universitas = $request->input('univ');
         $lamaran->institution_id = $request->input('institution_id');
-        $lamaran->mulai = $request->input('mulai');
-        $lamaran->selesai = $request->input('selesai');
+
+        $mulaiString = $request->input('mulai');
+        $lamaran->mulai = Carbon::createFromFormat('d/m/Y', $mulaiString)->format('Y-m-d');
+
+        $selesaiString = $request->input('selesai');
+        $lamaran->selesai = Carbon::createFromFormat('d/m/Y', $selesaiString)->format('Y-m-d');
+
         $lamaran->keterangan = $request->input('keterangan');
         $lamaran->save();
 

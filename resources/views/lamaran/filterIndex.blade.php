@@ -25,9 +25,9 @@
          
           <!-- informasi filter -->
           <label for="mulai_filter">Tanggal Mulai:</label>
-<input disabled value="{{$mulai_filter}}" type="text">
+<input disabled value="{{$mulai_filter}}" type="text" style="background-color: #eee; border: 1px solid #ced4da;">
 <label for="selesai_filter" class="ml-3">Tanggal Selesai:</label>
-<input disabled value="{{$selesai_filter}}" type="text">
+<input disabled value="{{$selesai_filter}}" type="text" style="background-color: #eee; border: 1px solid #ced4da;">
 <div>
   <label for="stat_filter" class="mt-3">Status:</label>
 </div>
@@ -41,7 +41,8 @@
     <option value="{{$institution_filter}}" selected>{{$institution_filter}}</option>
 </select>
 
-          <div class="list-group">
+
+          <div class="list-group mt-3">
             <table class="table table-head-fixed text-nowrap table-bordered" id="example1">
               <thead>
                 <tr>

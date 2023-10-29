@@ -40,9 +40,10 @@ class ApplicationPolicy
      */
     public function update(User $user, Application $application): bool
     {
-        // if($user->admin){
-        //     return true;
-        // }
+        if($user->admin){
+            return true;
+        }
+        return false;
     }
    
 
@@ -51,9 +52,10 @@ class ApplicationPolicy
      */
     public function delete(User $user, Application $application): bool
     {
-        // if($user->admin){
-        //     return true;
-        // }
+        if($user->admin){
+            return true;
+        }
+        return false;
     }
 
     /**
