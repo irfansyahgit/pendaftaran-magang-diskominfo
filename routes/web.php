@@ -46,6 +46,9 @@ Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy']);
 Route::get('/data/{lamaran}/edit', [ApplicationController::class, 'editAll']);
 Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll']);
 
+Route::get('/filter', [ApplicationController::class, 'filter']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

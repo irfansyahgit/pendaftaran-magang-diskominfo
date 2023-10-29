@@ -20,7 +20,15 @@ class ApplicationController extends Controller
     public function index(User $user)
     {
         if (auth()->user()->admin) {
+
+            // $lamaran = YourModel::find(1); // Gantilah 1 dengan ID data yang Anda inginkan
+            // $formattedDate = Carbon::parse($lamaran->created_at)->format('d/m/Y');
+
             $lamarans = Application::latest()->get();
+            // foreach($lamarans as $lamaran) {
+            //     dd($lamaran->created_at);
+            //     // $lamaran->created_at = Carbon::parse($lamaran->created_at)->format('d/m/Y');
+            // }
             return view('lamaran.index', ['lamarans' => $lamarans]);
         }
         $userId = auth()->id();
@@ -36,7 +44,6 @@ class ApplicationController extends Controller
         $institutions = Institution::all();
         $tanggalSekarang = Carbon::now()->format('d/m/Y');
         $user = auth()->user();
-
         $tanggal3BulanLagi = Carbon::now()->addMonths(3)->format('d/m/Y');
 
         return view('lamaran.create', ['tanggalSekarang' => $tanggalSekarang, 'tanggal3BulanLagi' => $tanggal3BulanLagi, 'institutions' => $institutions, 'user' => $user]);
@@ -104,8 +111,15 @@ class ApplicationController extends Controller
         $application->email = $request->input('email');
         $application->universitas = $request->input('univ');
         $application->institution_id = $request->input('institution_id');
-        $application->mulai = $request->input('mulai');
-        $application->selesai = $request->input('selesai');
+
+
+        $mulaiString = $request->input('mulai');
+        $application->mulai = Carbon::createFromFormat('d/m/Y', $mulaiString)->format('Y-m-d');
+
+        $selesaiString = $request->input('selesai');
+        $application->selesai = Carbon::createFromFormat('d/m/Y', $selesaiString)->format('Y-m-d');
+
+
         $application->keterangan = $keterangan;
         $application->keterangan_admin = $keteranganAdmin;
         $application->berkas_ktp = $filenamektp;
@@ -124,7 +138,11 @@ class ApplicationController extends Controller
      */
     public function show(Application $lamaran)
     {
-        return view('lamaran.show', ['lamaran' => $lamaran]);
+
+    $lamaran->mulai = Carbon::parse($lamaran->mulai)->format('d/m/Y');
+    $lamaran->selesai = Carbon::parse($lamaran->selesai)->format('d/m/Y');
+
+        return view('lamaran.show', ['lamaran' => $lamaran, 'mulai' => $lamaran->mulai, 'selesai' => $lamaran->selesai]);
     }
 
     /**
@@ -195,5 +213,16 @@ class ApplicationController extends Controller
     {
         $lamaran->delete();
         return redirect('/data')->with('berhasil', 'Berhasil hapus data');
+    }
+
+    public function filter(Request $request) {
+        $mulai_filter = $request->mulai_filter;
+        $selesai_filter = $request->selesai_filter;
+
+        $lamarans = Application::whereDate('created_at', '>=', $mulai_filter)
+                                    ->whereDate('created_at', '<=', $selesai_filter)
+                                    ->get();
+
+        return view('lamaran.index', ['lamarans' => $lamarans]);
     }
 }

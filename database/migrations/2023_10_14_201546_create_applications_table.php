@@ -19,8 +19,8 @@ return new class extends Migration
             $table->bigInteger('telepon');
             $table->string('email');
             $table->string('universitas');
-            $table->string('mulai');
-            $table->string('selesai');
+            $table->date('mulai');
+            $table->date('selesai');
             $table->longText('keterangan')->nullable();
             $table->string('berkas_ktp');
             $table->string('berkas_ktm');

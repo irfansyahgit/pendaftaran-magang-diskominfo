@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -110,7 +112,7 @@
 
         flatpickr("#selesai", {
             enableTime: false,
-            dateFormat: "d-m-Y", // Format tanggal yang diinginkan
+            dateFormat: "d/m/Y", 
             locale: 'id',
         });
     </script>
@@ -158,8 +160,21 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": [/*"copy", "csv", "excel", "pdf", "print", "colvis"*/]
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "buttons": [/*"copy", "csv", "excel", "pdf", "print", "colvis"*/],
+        "language": {
+        "search": "Cari:",
+        "infoEmpty": "Belum ada lamaran yang dikirim",
+        "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+        "zeroRecords": "Tidak ada data yang ditemukan",
+        "infoFiltered": " - difilter dari _MAX_ records",
+        "paginate": {
+          "previous": "Sebelumnya",
+          "next": "Berikutnya",
+        }
+      }
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
@@ -217,6 +232,8 @@
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+
+
 
 
 </body>
