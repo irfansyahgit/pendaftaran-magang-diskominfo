@@ -6,8 +6,6 @@
     </h2>
   </x-slot>
 
-
-
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -33,22 +31,22 @@
               <div>
                 <label for="stat_filter" class="mt-3">Status:</label>
               </div>
-              <select class="form-select mb-3" placeholder="Default select example" name="stat_filter">
+              <select class="form-select mb-3 select2" placeholder="Default select example" name="stat_filter">
                   <option value="" selected>-- Pilih Status --</option>
                   @foreach($stats as $stat)
                   <option value="{{$stat->id}}">{{$stat->nama}}</option>
                   @endforeach
               </select>
               <div>
-                <label for="institution_filter">Institusi:</label>
+                <label for="institution_filter" class="mt-3">Institusi:</label>
               </div>
-              <select class="form-select mb-3" placeholder="Default select example" name="institution_filter">
+              <select class="form-select mb-3 select2" placeholder="Default select example" name="institution_filter" >
                   <option value="" selected>-- Pilih Instansi --</option>
                   @foreach($institutions as $institution)
                   <option value="{{$institution->id}}">{{$institution->nama}}</option>
                   @endforeach
               </select>
-              <button type="submit" class="btn btn-primary ml-1">Filter</button>
+              <button type="submit" class="btn btn-primary ml-1 mt-3">Filter</button>
           </form>
           <div class="list-group">
             <table class="table table-head-fixed text-nowrap table-bordered" id="example1">

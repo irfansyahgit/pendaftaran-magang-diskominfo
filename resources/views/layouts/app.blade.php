@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
+<!-- select2 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
     <title>Magang</title>
@@ -45,8 +46,8 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
 
-    <!-- select2 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+
 
     <!-- DataTables -->
   <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -148,15 +149,7 @@ flatpickr("#selesai_filter", {
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
 
-    <!-- select2 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- select2 -->
-    <script>
-        $(document).ready(function() {
-            $('#test').select2();
-        });
-    </script>
+    
 
     <!-- DataTables  & Plugins -->
   <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -183,7 +176,7 @@ flatpickr("#selesai_filter", {
         "language": {
         "search": "Cari:",
         "infoEmpty": "Belum ada lamaran yang dikirim",
-        "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+        "info": "Menampilkan halaman _PAGE_ dari _PAGES_ entri",
         "zeroRecords": "Tidak ada data yang ditemukan",
         "infoFiltered": " - difilter dari _MAX_ records",
         "paginate": {
@@ -250,7 +243,17 @@ flatpickr("#selesai_filter", {
 <script src="/dist/js/adminlte.min.js"></script>
 
 
+<!-- select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <!-- select2 -->
+    <script>
+        $(document).ready(function() {
+            $(".select2").select2();
+            // $(".select2-disabled").select2();
+        });
+    </script>
 
 </body>
 

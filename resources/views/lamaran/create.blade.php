@@ -81,7 +81,7 @@
                         <div class="row mb-3">
                             <label for="lokasi" class="col-sm-2 col-form-label">Instansi Tujuan</label>
                             <div class="col-sm-10">
-                                <select class="form-select mb-3" placeholder="Default select example" name="institution_id" id="test">
+                                <select class="form-select mb-3 select2" placeholder="Default select example" name="institution_id">
                                     <option value="" selected>-- Pilih Instansi --</option>
                                     @foreach($institutions as $institution)
                                     <option value="{{$institution->id}}">{{$institution->nama}}</option>

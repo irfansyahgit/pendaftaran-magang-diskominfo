@@ -10,6 +10,7 @@ use App\Models\Institution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class ApplicationController extends Controller
@@ -225,22 +226,8 @@ class ApplicationController extends Controller
 
         $institution_filter = $request->institution_filter;
         $stat_filter = $request->stat_filter;
-
-    
-
-        if($request->mulai_filter == null) {
-            $mulai_filter = $request->mulai_filter;
-        } else {
-            $mulai_filter = Carbon::createFromFormat('d/m/Y', $request->mulai_filter)->format('Y-m-d');
-        }
-
-        if($request->selesai_filter == null) {
-            $selesai_filter = $request->selesai_filter;
-        } else {
-            $selesai_filter = Carbon::createFromFormat('d/m/Y', $request->selesai_filter)->format('Y-m-d');
-        }
-
-
+        $mulai_filter = $request->mulai_filter;
+        $selesai_filter = $request->selesai_filter;
 
         if (!$request->filled('mulai_filter') && !$request->filled('selesai_filter') && !$request->filled('stat_filter') && !$request->filled('institution_filter')) {
             return redirect()->back()->with('peringatan', 'Minimal 1 filter harus diisi.');
@@ -273,14 +260,44 @@ class ApplicationController extends Controller
             return redirect()->back()->with('gagal', 'Tidak ada data yang sesuai dengan filter.');
         }
 
-        session(['lamarans' => $lamarans]);
+        session(['lamarans' => $lamarans, 'mulai_filter' => $mulai_filter, 'selesai_filter' => $selesai_filter, 'stat_filter' => $request->stat_filter, 'institution_filter' => $request->institution_filter]);
 
 
-        return redirect('/filter')->with('berhasil', 'Data berhasil difilter');
+        return redirect('/filter')->with('filter', 'Data berhasil difilter');
     }
 
     public function filterIndex() {
         $lamarans = session('lamarans');
-        return view('lamaran.filterIndex', ['lamarans' => $lamarans]);
+        $mulai_filter = session('mulai_filter');
+        if($mulai_filter == null) {
+            $mulai_filter = '-';
+        } else {
+            $mulai_filter = Carbon::createFromFormat('Y-m-d', $mulai_filter)->format('d/m/Y');
+        }
+
+        $selesai_filter = session('selesai_filter');
+        if($selesai_filter == null) {
+            $selesai_filter = '-';
+        } else {
+            $selesai_filter = Carbon::createFromFormat('Y-m-d', $selesai_filter)->format('d/m/Y');
+        }
+
+        $stat_id = session('stat_filter');
+        if($stat_id != null) {
+            $stat = DB::table('stats')->where('id', $stat_id)->first();
+            $stat_filter = $stat->nama;
+        } else {
+            $stat_filter = '-';
+        }
+        
+        $institution_id = session('institution_filter');
+        if($institution_id != null) {
+            $institution = DB::table('institutions')->where('id', $institution_id)->first();
+            $institution_filter = $institution->nama;
+        } else {
+            $institution_filter = '-';
+        }
+
+        return view('lamaran.filterIndex', ['lamarans' => $lamarans, 'mulai_filter' => $mulai_filter, 'selesai_filter' => $selesai_filter, 'stat_filter' => $stat_filter, 'institution_filter' => $institution_filter]);
     }
 }

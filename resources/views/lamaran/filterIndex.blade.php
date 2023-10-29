@@ -12,8 +12,8 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
-          @if(session()->has('berhasil'))
-          <div class="alert alert-success small-alert m-0 p-2 text-center" role="alert">{{session('berhasil')}}
+          @if(session()->has('filter'))
+          <div class="alert alert-success small-alert m-0 p-2 text-center" role="alert">{{session('filter')}}
           </div>
           @endif
           @if(session()->has('gagal'))
@@ -23,6 +23,23 @@
           <p><strong><a href="/data">&laquo; Kembali</a></strong></p>
 
          
+          <!-- informasi filter -->
+          <label for="mulai_filter">Tanggal Mulai:</label>
+<input disabled value="{{$mulai_filter}}" type="text">
+<label for="selesai_filter" class="ml-3">Tanggal Selesai:</label>
+<input disabled value="{{$selesai_filter}}" type="text">
+<div>
+  <label for="stat_filter" class="mt-3">Status:</label>
+</div>
+<select disabled class="form-select mb-3 select2" placeholder="Default select example" name="stat_filter">
+    <option value="{{$stat_filter}}" selected>{{$stat_filter}}</option>
+</select>
+<div>
+  <label for="institution_filter" class="mt-3">Institusi:</label>
+</div>
+<select disabled class="form-select mb-3 select2" placeholder="Default select example" name="institution_filter" >
+    <option value="{{$institution_filter}}" selected>{{$institution_filter}}</option>
+</select>
 
           <div class="list-group">
             <table class="table table-head-fixed text-nowrap table-bordered" id="example1">
