@@ -8,7 +8,8 @@
 
 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
+    <title>Magang</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,7 +19,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
-    <!-- Datepicker -->
+    <!-- Datepicker flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <!-- Dashmin -->
@@ -86,7 +87,7 @@
 
 
     <!-- Datepicker -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('js/id.js') }}"></script>
     <!-- Menggunakan Flatpickr dari CDN lokal -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
@@ -111,6 +112,21 @@
 
 
         flatpickr("#selesai", {
+            enableTime: false,
+            dateFormat: "d/m/Y", 
+            locale: 'id',
+        });
+    </script>
+
+<!-- datepicker di filter -->
+
+<script>
+flatpickr("#mulai_filter", {
+            enableTime: false,
+            dateFormat: "d/m/Y", 
+            locale: 'id',
+        });
+flatpickr("#selesai_filter", {
             enableTime: false,
             dateFormat: "d/m/Y", 
             locale: 'id',

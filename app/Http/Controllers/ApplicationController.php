@@ -24,12 +24,15 @@ class ApplicationController extends Controller
             // $lamaran = YourModel::find(1); // Gantilah 1 dengan ID data yang Anda inginkan
             // $formattedDate = Carbon::parse($lamaran->created_at)->format('d/m/Y');
 
+            $institutions = Institution::all();
+            $stats = Stat::all();
+
             $lamarans = Application::latest()->get();
             // foreach($lamarans as $lamaran) {
             //     dd($lamaran->created_at);
             //     // $lamaran->created_at = Carbon::parse($lamaran->created_at)->format('d/m/Y');
             // }
-            return view('lamaran.index', ['lamarans' => $lamarans]);
+            return view('lamaran.index', ['lamarans' => $lamarans, 'stats' => $stats, 'institutions' => $institutions]);
         }
         $userId = auth()->id();
         $lamarans = Application::where('user_id', $userId)->latest()->get();
@@ -216,13 +219,51 @@ class ApplicationController extends Controller
     }
 
     public function filter(Request $request) {
-        $mulai_filter = $request->mulai_filter;
-        $selesai_filter = $request->selesai_filter;
+        $institutions = Institution::all();
+        $stats = Stat::all();
+        $lamarans = Application::all();
 
-        $lamarans = Application::whereDate('created_at', '>=', $mulai_filter)
-                                    ->whereDate('created_at', '<=', $selesai_filter)
-                                    ->get();
+        $institution_filter = $request->institution_filter;
+        $stat_filter = $request->stat_filter;
 
-        return view('lamaran.index', ['lamarans' => $lamarans]);
+        if($request->mulai_filter == null) {
+            $mulai_filter = $request->mulai_filter;
+        } else {
+            $mulai_filter = Carbon::createFromFormat('d/m/Y', $request->mulai_filter)->format('Y-m-d');
+        }
+
+        if($request->selesai_filter == null) {
+            $selesai_filter = $request->selesai_filter;
+        } else {
+            $selesai_filter = Carbon::createFromFormat('d/m/Y', $request->selesai_filter)->format('Y-m-d');
+        }
+
+
+        if (!$request->filled('mulai_filter') && !$request->filled('selesai_filter') && !$request->filled('stat_filter') && !$request->filled('institution_filter')) {
+            return redirect()->back()->with('gagal', 'Minimal 1 filter harus diisi.');
+        }
+
+
+
+        if($mulai_filter != null) {
+            $lamarans = Application::whereDate('created_at', '>=', $mulai_filter);
+        }
+
+        if($selesai_filter != null) {
+            $lamarans = Application::whereDate('created_at', '<=', $selesai_filter);
+        }
+
+        if($stat_filter != null) {
+            $lamarans = Application::where('stat_id', $stat_filter);
+        }
+
+        if($institution_filter != null) {
+            $lamarans = Application::where('institution_id', $institution_filter);
+        }
+
+
+        $lamarans = $lamarans->get();
+
+        return view('lamaran.index', ['lamarans' => $lamarans, 'institutions' => $institutions, 'stats' => $stats]);
     }
 }

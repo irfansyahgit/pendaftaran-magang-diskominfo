@@ -16,11 +16,33 @@
           <div class="alert alert-success small-alert m-0 p-2 text-center" role="alert">{{session('berhasil')}}
           </div>
           @endif
+          @if(session()->has('gagal'))
+          <div class="alert alert-warning small-alert mb-3 p-2 text-center text-white" role="alert">{{session('gagal')}}
+          </div>
+          @endif
           <form method="GET" action="/filter">
-              <label for="mulai">Tanggal mulai</label>
-              <input type="date" name="mulai_filter">
-              <label for="selesai">Tanggal Selesai</label>
-              <input type="date" name="selesai_filter">
+              <label for="mulai_filter">Tanggal Mulai:</label>
+              <input type="text" name="mulai_filter" id="mulai_filter">
+              <label for="selesai_filter">Tanggal Selesai:</label>
+              <input type="text" name="selesai_filter" id="selesai_filter">
+              <div>
+                <label for="stat_filter">Status:</label>
+              </div>
+              <select class="form-select mb-3" placeholder="Default select example" name="stat_filter">
+                  <option value="" selected>-- Pilih Status --</option>
+                  @foreach($stats as $stat)
+                  <option value="{{$stat->id}}">{{$stat->nama}}</option>
+                  @endforeach
+              </select>
+              <div>
+                <label for="institution_filter">Institusi:</label>
+              </div>
+              <select class="form-select mb-3" placeholder="Default select example" name="institution_filter">
+                  <option value="" selected>-- Pilih Instansi --</option>
+                  @foreach($institutions as $institution)
+                  <option value="{{$institution->id}}">{{$institution->nama}}</option>
+                  @endforeach
+              </select>
               <button type="submit" class="btn btn-primary ml-1">Filter</button>
           </form>
           <div class="list-group">
