@@ -16,17 +16,22 @@
           <div class="alert alert-success small-alert m-0 p-2 text-center" role="alert">{{session('berhasil')}}
           </div>
           @endif
-          @if(session()->has('gagal'))
-          <div class="alert alert-warning small-alert mb-3 p-2 text-center text-white" role="alert">{{session('gagal')}}
+          @if(session()->has('peringatan'))
+          <div class="alert alert-warning small-alert mb-3 p-2 text-center text-white" role="alert">{{session('peringatan')}}
           </div>
           @endif
-          <form method="GET" action="/filter">
+          @if(session()->has('gagal'))
+          <div class="alert alert-danger small-alert mb-3 p-2 text-center text-white" role="alert">{{session('gagal')}}
+          </div>
+          @endif
+          <form method="POST" action="/filter">
+          @csrf
               <label for="mulai_filter">Tanggal Mulai:</label>
               <input type="text" name="mulai_filter" id="mulai_filter">
-              <label for="selesai_filter">Tanggal Selesai:</label>
-              <input type="text" name="selesai_filter" id="selesai_filter">
+              <label for="selesai_filter" class="ml-3">Tanggal Selesai:</label>
+              <input type="text"  name="selesai_filter" id="selesai_filter">
               <div>
-                <label for="stat_filter">Status:</label>
+                <label for="stat_filter" class="mt-3">Status:</label>
               </div>
               <select class="form-select mb-3" placeholder="Default select example" name="stat_filter">
                   <option value="" selected>-- Pilih Status --</option>

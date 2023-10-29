@@ -46,7 +46,8 @@ Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy']);
 Route::get('/data/{lamaran}/edit', [ApplicationController::class, 'editAll']);
 Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll']);
 
-Route::get('/filter', [ApplicationController::class, 'filter']);
+Route::post('/filter', [ApplicationController::class, 'filter']);
+Route::get('/filter', [ApplicationController::class, 'filterIndex']);
 
 
 Route::get('/dashboard', function () {

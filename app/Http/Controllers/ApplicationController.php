@@ -226,6 +226,8 @@ class ApplicationController extends Controller
         $institution_filter = $request->institution_filter;
         $stat_filter = $request->stat_filter;
 
+    
+
         if($request->mulai_filter == null) {
             $mulai_filter = $request->mulai_filter;
         } else {
@@ -239,31 +241,46 @@ class ApplicationController extends Controller
         }
 
 
+
         if (!$request->filled('mulai_filter') && !$request->filled('selesai_filter') && !$request->filled('stat_filter') && !$request->filled('institution_filter')) {
-            return redirect()->back()->with('gagal', 'Minimal 1 filter harus diisi.');
+            return redirect()->back()->with('peringatan', 'Minimal 1 filter harus diisi.');
         }
 
 
+        $query = Application::query();
 
-        if($mulai_filter != null) {
-            $lamarans = Application::whereDate('created_at', '>=', $mulai_filter);
+        if ($request->filled('mulai_filter')) {
+            $mulai_filter = Carbon::createFromFormat('d/m/Y', $request->mulai_filter)->format('Y-m-d');
+            $query->whereDate('created_at', '>=', $mulai_filter);
+        }
+    
+        if ($request->filled('selesai_filter')) {
+            $selesai_filter = Carbon::createFromFormat('d/m/Y', $request->selesai_filter)->format('Y-m-d');
+            $query->whereDate('created_at', '<=', $selesai_filter);
+        }
+    
+        if ($request->filled('stat_filter')) {
+            $query->where('stat_id', $request->stat_filter);
+        }
+    
+        if ($request->filled('institution_filter')) {
+            $query->where('institution_id', $request->institution_filter);
+        }
+    
+        $lamarans = $query->get();
+    
+        if ($lamarans->isEmpty()) {
+            return redirect()->back()->with('gagal', 'Tidak ada data yang sesuai dengan filter.');
         }
 
-        if($selesai_filter != null) {
-            $lamarans = Application::whereDate('created_at', '<=', $selesai_filter);
-        }
-
-        if($stat_filter != null) {
-            $lamarans = Application::where('stat_id', $stat_filter);
-        }
-
-        if($institution_filter != null) {
-            $lamarans = Application::where('institution_id', $institution_filter);
-        }
+        session(['lamarans' => $lamarans]);
 
 
-        $lamarans = $lamarans->get();
+        return redirect('/filter')->with('berhasil', 'Data berhasil difilter');
+    }
 
-        return view('lamaran.index', ['lamarans' => $lamarans, 'institutions' => $institutions, 'stats' => $stats]);
+    public function filterIndex() {
+        $lamarans = session('lamarans');
+        return view('lamaran.filterIndex', ['lamarans' => $lamarans]);
     }
 }
