@@ -147,8 +147,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="berkaspermohonan" class="col-sm-2 col-form-label">Permohonan/Pengantar</label>
+                        <div class="row mb-3 flex items-center">
+                            <label for="berkaspermohonan" class="col-sm-2 col-form-label">Permohonan / Pengantar</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="file" id="berkaspermohonan" name="berkaspermohonan" style="background-color: white;">
                                 @error('berkaspermohonan')
@@ -169,7 +169,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary float-end mb-3" style="width: 200px;">Kirim</button>
+                        <button type="submit" class="btn btn-primary float-end mb-32 text-wrap" style="width: 200px;">Kirim</button>
                     </form>
                 </div>
             </div>
