@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Lamaran') }}
+            {{ __('Registrasi') }}
         </h2>
     </x-slot>
 
@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <form action="/lamaran" method="post" enctype="multipart/form-data">
                         @csrf
-                        <h6 class="mb-4">Identitas : </h6>
+                        <h6 class="mb-4">Identitas </h6>
                         <div class="row mb-3">
                             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-10">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="nik" class="col-sm-2 col-form-label">NIK</label>
+                            <label for="nik" class="col-sm-2 col-form-label">NIK / Nomor KTP</label>
                             <div class="col-sm-10">
                                 <input value="{{old('nik')}}" type="number" class="form-control" id="nik" name="nik">
                                 @error('nik')
@@ -125,6 +125,11 @@
                             </div>
                         </div>
                         <h6 class="mb-4">Berkas : </h6>
+                        <div class="px-6.5 pt-6.5">
+                            <p class="bg-[#ffcccc] text-black opacity-80 p-3 rounded-md"><span class="font-semibold">Catatan</span>:
+                                Semua berkas/file yang diunggah harus dalam format PDF.
+                            </p>
+                        </div>
                         <div class="row mb-3">
                             <label for="berkasktp" class="col-sm-2 col-form-label">KTP</label>
                             <div class="col-sm-10">
@@ -169,7 +174,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary float-end mb-32 text-wrap" style="width: 200px;">Kirim</button>
+                        <div class="w-full flex flex-row-reverse">
+                            <x-primary-button class="">
+                                {{ __('Kirim Lamaran') }}
+                            </x-primary-button>
+                        </div>
                     </form>
                 </div>
             </div>
