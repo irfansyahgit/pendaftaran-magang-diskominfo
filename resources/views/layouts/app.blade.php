@@ -64,9 +64,6 @@
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
 
 
-
-
-
 </head>
 
 <body class="font-sans antialiased">
