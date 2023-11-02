@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<!-- select2 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- select2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
     <title>Magang</title>
@@ -46,22 +46,25 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
 
-   
+
 
 
     <!-- DataTables -->
-  <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
-   <!-- Theme style -->
-   <!-- adminlte css -->
-   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <!-- adminlte css -->
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+
+
+
 
 
 </head>
@@ -72,11 +75,7 @@
 
         <!-- Page Heading -->
         @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
+
         @endif
 
         <!-- Page Content -->
@@ -114,22 +113,22 @@
 
         flatpickr("#selesai", {
             enableTime: false,
-            dateFormat: "d/m/Y", 
+            dateFormat: "d/m/Y",
             locale: 'id',
         });
     </script>
 
-<!-- datepicker di filter -->
+    <!-- datepicker di filter -->
 
-<script>
-flatpickr("#mulai_filter", {
+    <script>
+        flatpickr("#mulai_filter", {
             enableTime: false,
-            dateFormat: "d/m/Y", 
+            dateFormat: "d/m/Y",
             locale: 'id',
         });
-flatpickr("#selesai_filter", {
+        flatpickr("#selesai_filter", {
             enableTime: false,
-            dateFormat: "d/m/Y", 
+            dateFormat: "d/m/Y",
             locale: 'id',
         });
     </script>
@@ -149,102 +148,102 @@ flatpickr("#selesai_filter", {
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
 
-    
+
 
     <!-- DataTables  & Plugins -->
-  <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="/plugins/jszip/jszip.min.js"></script>
-  <script src="/plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="/plugins/pdfmake/vfs_fonts.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/jszip/jszip.min.js"></script>
+    <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-   <!-- Page specific script datatables -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": [/*"copy", "csv", "excel", "pdf", "print", "colvis"*/],
-        "language": {
-        "search": "Cari:",
-        "infoEmpty": "Belum ada lamaran yang dikirim",
-        "info": "Menampilkan halaman _PAGE_ dari _PAGES_ entri",
-        "zeroRecords": "Tidak ada data yang ditemukan",
-        "infoFiltered": " - difilter dari _MAX_ records",
-        "paginate": {
-          "previous": "Sebelumnya",
-          "next": "Berikutnya",
+    <!-- Page specific script datatables -->
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [ /*"copy", "csv", "excel", "pdf", "print", "colvis"*/ ],
+                "language": {
+                    "search": "Cari:",
+                    "infoEmpty": "Belum ada lamaran yang dikirim",
+                    "info": "Menampilkan halaman _PAGE_ dari _PAGES_ entri",
+                    "zeroRecords": "Tidak ada data yang ditemukan",
+                    "infoFiltered": " - difilter dari _MAX_ records",
+                    "paginate": {
+                        "previous": "Sebelumnya",
+                        "next": "Berikutnya",
+                    }
+                }
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+                "responsive": true,
+            });
+        });
+    </script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Page specific script sweetalert -->
+    <script>
+        function confirmDelete(lamaranId) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data akan terhapus secara pernamen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna mengklik "Ya, Hapus!", submit formulir penghapusan
+                    document.getElementById('deleteForm' + lamaranId).submit();
+                }
+            });
         }
-      }
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
-    });
-  });
-</script>
-
-<!-- sweetalert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-   <!-- Page specific script sweetalert -->
-<script>
-    function confirmDelete(lamaranId) {
-      Swal.fire({
-        title: 'Apakah Anda yakin?',
-        text: "Data akan terhapus secara pernamen",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, hapus!',
-        cancelButtonText: 'Batal'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Jika pengguna mengklik "Ya, Hapus!", submit formulir penghapusan
-          document.getElementById('deleteForm' + lamaranId).submit();
-        }
-      });
-    }
-  </script>
+    </script>
 
 
-<!-- jQuery -->
-<script src="/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="/plugins/jszip/jszip.min.js"></script>
-<script src="/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/jszip/jszip.min.js"></script>
+    <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/adminlte.min.js"></script>
 
 
-<!-- select2 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- select2 -->

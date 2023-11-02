@@ -44,7 +44,8 @@ class User extends Authenticatable
     ];
 
 
-    public function lamarans() {
+    public function lamarans()
+    {
         return $this->hasMany(Application::class, 'user_id');
     }
 }

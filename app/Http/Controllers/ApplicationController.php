@@ -22,17 +22,11 @@ class ApplicationController extends Controller
     {
         if (auth()->user()->admin) {
 
-            // $lamaran = YourModel::find(1); // Gantilah 1 dengan ID data yang Anda inginkan
-            // $formattedDate = Carbon::parse($lamaran->created_at)->format('d/m/Y');
-
             $institutions = Institution::all();
             $stats = Stat::all();
 
-            $lamarans = Application::latest()->get();
-            // foreach($lamarans as $lamaran) {
-            //     dd($lamaran->created_at);
-            //     // $lamaran->created_at = Carbon::parse($lamaran->created_at)->format('d/m/Y');
-            // }
+            $lamarans = Application::oldest()->get();
+
             return view('lamaran.index', ['lamarans' => $lamarans, 'stats' => $stats, 'institutions' => $institutions]);
         }
         $userId = auth()->id();
@@ -143,8 +137,8 @@ class ApplicationController extends Controller
     public function show(Application $lamaran)
     {
 
-    $lamaran->mulai = Carbon::parse($lamaran->mulai)->format('d/m/Y');
-    $lamaran->selesai = Carbon::parse($lamaran->selesai)->format('d/m/Y');
+        $lamaran->mulai = Carbon::parse($lamaran->mulai)->format('d/m/Y');
+        $lamaran->selesai = Carbon::parse($lamaran->selesai)->format('d/m/Y');
 
         return view('lamaran.show', ['lamaran' => $lamaran, 'mulai' => $lamaran->mulai, 'selesai' => $lamaran->selesai]);
     }
@@ -224,7 +218,8 @@ class ApplicationController extends Controller
         return redirect('/data')->with('berhasil', 'Berhasil hapus data');
     }
 
-    public function filter(Request $request) {
+    public function filter(Request $request)
+    {
         $institutions = Institution::all();
         $stats = Stat::all();
         $lamarans = Application::all();
@@ -245,22 +240,22 @@ class ApplicationController extends Controller
             $mulai_filter = Carbon::createFromFormat('d/m/Y', $request->mulai_filter)->format('Y-m-d');
             $query->whereDate('created_at', '>=', $mulai_filter);
         }
-    
+
         if ($request->filled('selesai_filter')) {
             $selesai_filter = Carbon::createFromFormat('d/m/Y', $request->selesai_filter)->format('Y-m-d');
             $query->whereDate('created_at', '<=', $selesai_filter);
         }
-    
+
         if ($request->filled('stat_filter')) {
             $query->where('stat_id', $request->stat_filter);
         }
-    
+
         if ($request->filled('institution_filter')) {
             $query->where('institution_id', $request->institution_filter);
         }
-    
+
         $lamarans = $query->get();
-    
+
         if ($lamarans->isEmpty()) {
             return redirect()->back()->with('gagal', 'Tidak ada data yang sesuai dengan filter.');
         }
@@ -271,32 +266,33 @@ class ApplicationController extends Controller
         return redirect('/filter')->with('filter', 'Data berhasil difilter');
     }
 
-    public function filterIndex() {
+    public function filterIndex()
+    {
         $lamarans = session('lamarans');
         $mulai_filter = session('mulai_filter');
-        if($mulai_filter == null) {
+        if ($mulai_filter == null) {
             $mulai_filter = '-';
         } else {
             $mulai_filter = Carbon::createFromFormat('Y-m-d', $mulai_filter)->format('d/m/Y');
         }
 
         $selesai_filter = session('selesai_filter');
-        if($selesai_filter == null) {
+        if ($selesai_filter == null) {
             $selesai_filter = '-';
         } else {
             $selesai_filter = Carbon::createFromFormat('Y-m-d', $selesai_filter)->format('d/m/Y');
         }
 
         $stat_id = session('stat_filter');
-        if($stat_id != null) {
+        if ($stat_id != null) {
             $stat = DB::table('stats')->where('id', $stat_id)->first();
             $stat_filter = $stat->nama;
         } else {
             $stat_filter = '-';
         }
-        
+
         $institution_id = session('institution_filter');
-        if($institution_id != null) {
+        if ($institution_id != null) {
             $institution = DB::table('institutions')->where('id', $institution_id)->first();
             $institution_filter = $institution->nama;
         } else {

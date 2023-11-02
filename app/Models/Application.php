@@ -29,17 +29,11 @@ class Application extends Model
         'user_id',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // public function stat() {
-    //     return $this->hasOne(Stat::class, 'stat_id');
-    // }
-
-    // public function institution() {
-    //     return $this->hasOne(Institution::class, 'institution_id');
-    // }
 
     public function institution()
     {
