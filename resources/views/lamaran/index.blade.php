@@ -25,20 +25,22 @@
                         {{session('gagal')}}
                     </div>
                     @endif
-                    <form method="POST" action="/filter">
+                    
+                    <form method="POST" action="/data">
                         @csrf
+                        <input type="hidden" name="isProses" value="true">
                         <label for="mulai_filter">Tanggal Mulai:</label>
-                        <input type="text" name="mulai_filter" id="mulai_filter">
+                        <input type="text" name="mulai_filter" id="mulai_filter" value="{{$mulai_filter}}">
                         <label for="selesai_filter" class="ml-3 mt-5">Tanggal Selesai:</label>
-                        <input type="text" name="selesai_filter" id="selesai_filter">
+                        <input type="text" name="selesai_filter" id="selesai_filter" value="{{$selesai_filter}}"> 
                         <div>
                             <label for="stat_filter" class="mt-3">Status:</label>
                         </div>
                         <select class="form-select mb-3 select2" placeholder="Default select example"
-                                name="stat_filter">
-                            <option value="" selected>-- Pilih Status --</option>
+                        name="stat_filter">
+                            <option value="%">-- Semua Status --</option>
                             @foreach($stats as $stat)
-                            <option value="{{$stat->id}}">{{$stat->nama}}</option>
+                            <option value="{{$stat->id}}"{{ $stat->id == $stat_filter ? ' selected' : '' }}>{{$stat->nama}}</option>
                             @endforeach
                         </select>
                         <div>
@@ -46,55 +48,61 @@
                         </div>
                         <select class="form-select mb-3 select2" placeholder="Default select example"
                                 name="institution_filter">
-                            <option value="" selected>-- Pilih Instansi --</option>
+                            <option value="%">-- Semua Instansi --</option>
                             @foreach($institutions as $institution)
-                            <option value="{{$institution->id}}">{{$institution->nama}}</option>
+                            <option value="{{$institution->id}}"{{ $institution->id == $institution_filter ? ' selected' : '' }}>{{$institution->nama}}</option>
                             @endforeach
                         </select>
                         <button type="submit" class="btn btn-primary ml-1 mt-3">Filter</button>
                     </form>
+                    
                     <div class="list-group">
-                        <table class="table table-head-fixed text-nowrap table-bordered" id="example1">
-                            <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Status</th>
-                                <th>Instansi</th>
-                                <th>Tanggal Dikirim</th>
-                                <th>Aksi</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if(count($lamarans) > 0)
-                            @foreach($lamarans as $lamaran)
-                            <tr>
-                                <td>{{$lamaran->nama}}</td>
-                                <td>{{$lamaran->stat->nama}}</td>
-                                <td>{{$lamaran->institution->nama}}</td>
-                                <td>{{$lamaran->created_at->format('j/n/Y')}}</td>
-                                <td>
-                                    <!-- sweetalert -->
-                                    <div>
-                                        <form id="deleteForm{{$lamaran->id}}" action="/data/{{$lamaran->id}}"
-                                              method="POST" class="d-inline-block mr-2">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" class="btn btn-danger"
-                                                    onclick="confirmDelete({{$lamaran->id}})"><i
-                                                    class="fas fa-trash"></i></button>
-                                        </form>
-                                        <a href="/data/{{$lamaran->id}}/edit"
-                                           class="btn btn-primary d-inline-block mr-2"><i class="fas fa-edit"></i></a>
-                                        <a href="/lamaran/{{$lamaran->id}}" class="btn btn-success d-inline-block mr-2"><i
-                                                class="fas fa-eye"></i></a>
+                        @if(isset($isProses) && $isProses)
+                            <table class="table table-head-fixed text-nowrap table-bordered" id="example1">
+                                <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Status</th>
+                                    <th>Instansi</th>
+                                    <th>Tanggal Dikirim</th>
+                                    <th>Aksi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @if(count($lamarans) > 0)
+                                        @foreach($lamarans as $lamaran)
+                                            <tr>
+                                                <td>{{$lamaran->nama}}</td>
+                                                <td>{{$lamaran->stat->nama}}</td>
+                                                <td>{{$lamaran->institution->nama}}</td>
+                                                <td>{{$lamaran->created_at->format('j/n/Y')}}</td>
+                                                <td>
+                                                    <!-- sweetalert -->
+                                                    <div>
+                                                        <form id="deleteForm{{$lamaran->id}}" action="/data/{{$lamaran->id}}"
+                                                            method="POST" class="d-inline-block mr-2">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="btn btn-danger"
+                                                                    onclick="confirmDelete({{$lamaran->id}})"><i
+                                                                    class="fas fa-trash"></i></button>
+                                                        </form>
+                                                        <a href="/data/{{$lamaran->id}}/edit"
+                                                        class="btn btn-primary d-inline-block mr-2"><i class="fas fa-edit"></i></a>
+                                                        <a href="/lamaran/{{$lamaran->id}}" class="btn btn-success d-inline-block mr-2"><i
+                                                                class="fas fa-eye"></i></a>
 
-                                    </div>
+                                                    </div>
 
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        @else
+                            <hr>
+                            Silakan memilih kriteria di atas
                         @endif
                     </div>
                 </div>

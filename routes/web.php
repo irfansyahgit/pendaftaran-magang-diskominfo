@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ApplicationController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,24 +22,20 @@ Route::get('/download/ktm/{filename}', [PDFController::class, 'downloadKTM'])->n
 Route::get('/download/proposal/{filename}', [PDFController::class, 'downloadProposal'])->name('download.proposal');
 Route::get('/download/permohonan/{filename}', [PDFController::class, 'downloadPermohonan'])->name('download.permohonan');
 
-
 Route::get('/', function () {
     return redirect('/login');
 });
-
 
 Route::get('/lamaran', [ApplicationController::class, 'create'])->middleware(['auth', 'verified'])->name('lamaran');
 Route::post('/lamaran', [ApplicationController::class, 'store'])->middleware(['auth', 'verified']);
 Route::get('/lamaran/{lamaran}', [ApplicationController::class, 'show'])->middleware(['auth', 'verified', 'can:view,lamaran']);
 
-
 Route::get('/lamaran/{lamaran}/edit', [ApplicationController::class, 'edit'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);
 Route::put('/lamaran/{lamaran}', [ApplicationController::class, 'update'])->middleware(['auth', 'verified', 'can:update,lamaran']);
 
-
 Route::get('/riwayat', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('riwayat');
 Route::get('/data', [ApplicationController::class, 'index'])->middleware(['auth', 'verified', 'can:hanyaAdmin'])->name('data');
-
+Route::post('/data', [ApplicationController::class, 'index'])->middleware(['auth', 'verified', 'can:hanyaAdmin'])->name('prosesData');
 
 Route::delete('/data/{lamaran}', [ApplicationController::class, 'destroy'])->middleware(['auth', 'verified', 'can:delete,lamaran']);
 
@@ -48,7 +44,6 @@ Route::put('/data/{lamaran}', [ApplicationController::class, 'updateAll'])->midd
 
 Route::post('/filter', [ApplicationController::class, 'filter']);
 Route::get('/filter', [ApplicationController::class, 'filterIndex'])->middleware(['auth', 'verified', 'can:hanyaAdmin']);
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -60,4 +55,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

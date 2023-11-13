@@ -43,7 +43,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     public function lamarans()
     {
         return $this->hasMany(Application::class, 'user_id');

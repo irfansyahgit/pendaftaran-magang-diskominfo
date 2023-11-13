@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Application;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class ApplicationPolicy
 {
@@ -23,6 +22,7 @@ class ApplicationPolicy
         if ($user->admin) {
             return true;
         }
+
         return $user->id === $application->user_id;
     }
 
@@ -42,9 +42,9 @@ class ApplicationPolicy
         if ($user->admin) {
             return true;
         }
+
         return false;
     }
-
 
     /**
      * Determine whether the user can delete the model.
@@ -54,6 +54,7 @@ class ApplicationPolicy
         if ($user->admin) {
             return true;
         }
+
         return false;
     }
 
